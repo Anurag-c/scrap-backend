@@ -36,17 +36,17 @@ async function updatePastScore(user) {
       if (n + 1 > 5) pastScores.shift();
     }
   }
-  return pastScores;
+  n = pastScores.length;
+  if (n >= 3 && pastScores[n - 1].score > pastScores[n - 3].score) {
+    user.hasStar = true;
+  }
+  user.pastScores = pastScores;
 }
 
 exports.updateAllUsers = catchAsync(async (req, res, next) => {
   const updatedUsers = req.body;
   await updatedUsers.forEach(async (user) => {
-    user.pastScores = await updatePastScore(user);
-    n = user.pastScores.length;
-    if (n >= 3 && user.pastScores[n - 1].score > user.pastScores[n - 3].score) {
-      user.hasStar = true;
-    }
+    await updatePastScore(user);
     const result = await User.findByIdAndUpdate(user._id, user);
     console.log(result);
   });
