@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 
+const scoreSchema = new mongoose.Schema({
+  date: Date,
+  score: Number,
+});
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -45,6 +50,11 @@ const userSchema = new mongoose.Schema({
   },
   overall: {
     type: Number,
+  },
+  pastScores: [scoreSchema],
+  hasStar: {
+    type: Boolean,
+    default: false,
   },
 });
 
