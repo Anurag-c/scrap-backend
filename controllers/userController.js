@@ -46,7 +46,7 @@ exports.updateAllUsers = catchAsync(async (req, res, next) => {
     n = user.pastScores.length;
     if (n >= 3 && user.pastScores[n - 1].score > user.pastScores[n - 3].score) {
       user.hasStar = true;
-    }
+    } else user.hasStar = false;
     const result = await User.findByIdAndUpdate(user._id, user);
     console.log(result);
   });
