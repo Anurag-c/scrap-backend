@@ -52,9 +52,9 @@ const userSchema = new mongoose.Schema({
     type: Number,
   },
   pastScores: [scoreSchema],
-  stars: {
-    type: Number,
-    default: 0,
+  hasStar: {
+    type: Boolean,
+    default: false,
   },
 });
 
