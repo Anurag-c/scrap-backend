@@ -34,6 +34,7 @@ const userSchema = new mongoose.Schema({
   },
   leetcodeSolved: {
     type: Number,
+    default: 0,
   },
   pastScores: [scoreSchema],
   stars: {
