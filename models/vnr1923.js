@@ -4,6 +4,11 @@ const scoreSchema = new mongoose.Schema({
   score: Number,
 });
 
+const subSchema = new mongoose.Schema({
+  score: Number,
+  rating: Number,
+});
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -27,9 +32,10 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   leetcodeScore: {
-    type: {
-      solved: Number,
-      rating: Number,
+    type: subSchema,
+    default: {
+      score: 0,
+      rating: 0,
     },
   },
   leetcodeSolved: {
